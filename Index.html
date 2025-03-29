@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollowbirth Asylum</title>
+    <style>
+        body {
+            background: black;
+            color: red;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 20px red;
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .container {
+            margin-top: 20vh;
+        }
+        .button {
+            padding: 15px;
+            font-size: 1.2em;
+            background: red;
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .button:hover {
+            background: darkred;
+        }
+        .whisper {
+            position: absolute;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            animation: fadeWhisper 5s infinite alternate;
+        }
+        @keyframes fadeWhisper {
+            0% { opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Hollowbirth Asylum</h1>
+        <p>The walls remember. Do you?</p>
+        <a href="intake.html" class="button">Patient Intake</a>
+        <a href="records.html" class="button">Patient Records</a>
+    </div>
+    
+    <script>
+        function createWhispers() {
+            for (let i = 0; i < 5; i++) {
+                let whisper = document.createElement('div');
+                whisper.classList.add('whisper');
+                whisper.innerText = [
+                    "They are watching...",
+                    "You can't leave...",
+                    "Why did you come?",
+                    "The doctor is waiting...",
+                    "It's in the walls..."
+                ][Math.floor(Math.random() * 5)];
+                
+                whisper.style.top = Math.random() * 100 + 'vh';
+                whisper.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(whisper);
+                
+                setTimeout(() => {
+                    whisper.remove();
+                }, 7000);
+            }
+        }
+        setInterval(createWhispers, 5000);
+    </script>
+</body>
+</html>
